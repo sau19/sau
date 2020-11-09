@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <title>沈阳航空航天大学出入登记</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="title">{{title}}</div>
+        <div class="animateContainer">
+            <div class="doorNum">{{doorNum}}</div>
+            <img class="mainImg" src="./static/img/main.jpeg" alt="">
+        </div>
+        <div class="time">时间：{{ time }}</div>
+        <div class="count">今日第{{ count }}次使用出门</div>
+        <div class="userInfo">
+            <div class="flexstart userForm">
+                <div class="formTitle">姓名：</div>
+                <div class="formContent">{{ name }}</div>
+            </div>
+            <div class="flexstart userForm">
+                <div class="formTitle">学号：</div>
+                <div class="formContent">{{ studentNum }}</div>
+            </div>
+            <div class="flexstart userForm">
+                <div class="formTitle">电话：</div>
+                <div class="formContent">{{ telphone }}</div>
+            </div>
+            <div class="flexstart userForm">
+                <div class="formTitle">联系人：</div>
+                <div class="formContent">{{ contact }}</div>
+            </div>
+            <div class="bottom">
+                信息网络中心提供相关技术支持
+            </div>
+        </div>
+    </div>
+    <script src="./static/js/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            // 只有根实例上可以写对象
+            data() {
+                return {
+                    name: '杨洪鹏',
+                    contact: '赵亚风',
+                    telphone: '18846422712',
+                    title: '沈航学生出门登记',
+                    doorNum: '998200',
+                    studentNum: '192306057423',
+                    time: '2020-11-06 20:55:57',
+                    count: 3,
+                }
+            },
+            methods: {
+                // 移动端设置rem
+                setRem() {
+                    const html = document.documentElement
+                    const { width } = html.getBoundingClientRect()
+                    html.style.fontSize = `${width / 750}px`
+                },
+            },
+            mounted() {
+                this.setRem()
+                window.addEventListener('onsize', () => {
+                    this.setRem()
+                })
+            },
+        })
+    </script>
+</body>
+
+</html>
